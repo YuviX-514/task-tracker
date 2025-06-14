@@ -8,7 +8,7 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/tasks")
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/tasks`)
       .then(res => setTasks(res.data))
       .catch(err => console.error(err));
   }, []);

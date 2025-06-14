@@ -2,14 +2,14 @@ import axios from "axios";
 
 const TaskList = ({ tasks, setTasks }) => {
   const toggleComplete = async (id, completed) => {
-    const res = await axios.put(`http://localhost:8000/tasks/${id}`, {
+    const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/tasks/${id}`, {
       completed: !completed,
     });
     setTasks((prev) => prev.map((task) => (task._id === id ? res.data : task)));
   };
 
   const deleteTask = async (id) => {
-    await axios.delete(`http://localhost:8000/tasks/${id}`);
+    await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/tasks/${id}`);
     setTasks((prev) => prev.filter((task) => task._id !== id));
   };
 

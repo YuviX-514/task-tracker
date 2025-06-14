@@ -8,7 +8,7 @@ const TaskForm = ({ onTaskAdd }) => {
     e.preventDefault();
     if (!title.trim()) return;
 
-    const res = await axios.post("http://localhost:8000/tasks", { title });
+    const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/tasks`, { title });
     onTaskAdd(res.data);
     setTitle("");
   };
