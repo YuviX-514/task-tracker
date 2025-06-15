@@ -22,9 +22,10 @@ const App = () => {
 
   // Optional: fetch from backend (can keep or remove)
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_BACKEND_URL}/tasks`)
-      .then(res => setTasks(res.data))
-      .catch(err => console.error(err));
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/tasks`)
+      .then((res) => setTasks(res.data))
+      .catch((err) => console.error(err));
   }, []);
 
   // Toggle dark mode
@@ -33,7 +34,7 @@ const App = () => {
   }, [darkMode]);
 
   const handleTaskAdd = (task) => {
-    setTasks(prev => [...prev, task]);
+    setTasks((prev) => [...prev, task]);
   };
 
   return (
@@ -42,7 +43,7 @@ const App = () => {
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl font-bold">📝 Task Tracker</h1>
           <button
-            onClick={() => setDarkMode(prev => !prev)}
+            onClick={() => setDarkMode((prev) => !prev)}
             className="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded text-sm"
           >
             {darkMode ? "🌞 Light" : "🌙 Dark"}
@@ -51,6 +52,15 @@ const App = () => {
         <TaskForm onTaskAdd={handleTaskAdd} />
         <TaskList tasks={tasks} setTasks={setTasks} />
       </div>
+      <footer className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 italic">
+        © 2025 — Maintained by{" "}
+        <span className="font-semibold text-red-600 dark:text-red-400">
+          Lucifer
+        </span>
+        .
+        <br />
+        “Hell hath no fury like unfinished tasks.” 😈
+      </footer>
     </div>
   );
 };
